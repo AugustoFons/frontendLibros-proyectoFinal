@@ -1,7 +1,9 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Add from './components/Add';
 import NavBar from './components/NavBar'
 import { ThemeProvider , createTheme } from '@mui/material/styles';
 import { Box } from '@mui/material'
+import Libros from "./components/Libros";
 
 function App() {
 	const greenTheme = createTheme({
@@ -22,6 +24,11 @@ return (
 			<Box style={{ display: "flex", justifyContent:"center", padding:"20px"}}>
 				<Add />
 			</Box>
+			<BrowserRouter>
+				<Routes>
+					<Route path="/" element={<Libros />}></Route>
+				</Routes>
+			</BrowserRouter>
         </div>
     </ThemeProvider>
 
