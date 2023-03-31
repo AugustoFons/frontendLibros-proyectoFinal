@@ -1,14 +1,11 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Badge from '@mui/material/Badge';
+import { AppBar, Box, Toolbar, IconButton, Badge, InputBase  } from '@mui/material';
 import Logo from '../images/logo2.png'
-import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
+import '@fontsource/roboto/500.css';
+
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -53,34 +50,37 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function SearchAppBar() {
+
+
+
     return (
     <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static" color="inherit">
+        <AppBar width="xl" position="static" color="inherit" sx={{ padding: (2, 1, 0, 1) }}>
             <Toolbar>
             <Badge  
                 color="primary"
                 noWrap
-                sx={{ flexGrow: 1, display: { xs: 'block', sm: 'block' } }}
+                height="100%"
+                sx={{ flexGrow: 1, display: { xs: 'flex', sm: 'flex' }, alignItems: 'center' }}
             >
-                <img src={Logo} alt="" width={'10%'}/>
+                <img src={Logo} alt="" width={'110rem'}/>
             </Badge>
             <Search>
                 <SearchIconWrapper>
-                <SearchIcon />
+                <SearchIcon color="primary" />
                 </SearchIconWrapper>
                 <StyledInputBase
                 placeholder="Search…"
-                inputProps={{ 'aria-label': 'search' }}
+                inputProps={{ 'aria-label': 'search',  sx: { color: "#5a794f" } }}
                 />
             </Search>
             <IconButton
                 size="large"
                 edge="start"
-                color="green"
                 aria-label="open drawer"
                 sx={{ mr: 2 }}
             >
-                <MenuIcon />
+                <MenuIcon color="primary" />
             </IconButton>
             </Toolbar>
         </AppBar>
