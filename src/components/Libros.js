@@ -39,7 +39,7 @@ useEffect(() => {
     obtenerLibros();
     }, []);
 const obtenerLibros = async () =>{
-    const Libros = (await axios.get("http://localhost:8080/get")).data
+    const Libros = (await axios.get("https://backend-proyectofinal-production.up.railway.app/get")).data
     console.log(Libros)
     setData(Libros)
 }
@@ -58,7 +58,7 @@ return (
         {
             data.map((item) => {
             return(
-            <Card sx={{ maxWidth: 345, boxShadow: "0px 10px 15px -3px rgb(90,121,79)", margin: "20px 0px", maxHeight: expanded === item._id ? 'maxContent' : 610  }} key={item._id} >
+            <Card sx={{ maxWidth: 345, boxShadow: "0px 10px 15px -3px rgb(90,121,79)", margin: "20px 0px", maxHeight: expanded === item._id ? 'maxContent' : 610, display: "flex", flexDirection: "column", justifyContent:"space-between"  }} key={item._id} >
                 <CardHeader
                 avatar={
                 <Avatar aria-label="recipe">
@@ -87,7 +87,7 @@ return (
                     </Typography>
                 </CardContent>
                 <CardActions disableSpacing>
-                    <IconButton aria-label="download" color="primary">
+                    <IconButton aria-label="download" color="primary" href={item.url_download} target='_blank'>
                     <CloudDownloadIcon  fontSize='large' />
                     </IconButton>
                     <IconButton aria-label="add to favorites" color="primary">
