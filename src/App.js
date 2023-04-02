@@ -9,11 +9,17 @@ function App() {
 	const greenTheme = createTheme({
 		palette: {
 			primary: {
-				light: '#5a794f',
-				main: '#5a794f',
-				dark: '#5a794f',
+				light: '#65AD4F',
+				main: '#65AD4F',
+				dark: '#65AD4F',
 				contrastText: '#fff',
 			},    
+			secondary: {
+				light: '#D99054',
+				main: '#D99054',
+				dark: '#D99054',
+				contrastText: '#fff',
+			},
 		}
     })
 

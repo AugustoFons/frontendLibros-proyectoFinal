@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
-import { AppBar, Box, Toolbar, IconButton, Badge, InputBase  } from '@mui/material';
-import Logo from '../images/logo2.png'
+import { AppBar, Box, Toolbar, IconButton, Badge, InputBase, Typography  } from '@mui/material';
+import Logo from '../images/logonew.png'
+import Titulo from '../images/librosp.png'
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import '@fontsource/roboto/500.css';
@@ -63,7 +64,8 @@ export default function SearchAppBar() {
                 height="100%"
                 sx={{ flexGrow: 1, display: { xs: 'flex', sm: 'flex' }, alignItems: 'center' }}
             >
-                <img src={Logo} alt="" width={'110rem'}/>
+                <img src={Logo} alt="" width={'70rem'}/>
+                <img src={Titulo} alt="" width={'90rem'} style={{ paddingLeft: "10px" }}/> {/* fuente belleza */}
             </Badge>
             <Search>
                 <SearchIconWrapper>

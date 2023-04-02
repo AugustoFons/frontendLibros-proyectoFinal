@@ -58,7 +58,7 @@ return (
         {
             data.map((item) => {
             return(
-            <Card sx={{ maxWidth: 345, boxShadow: "0px 10px 15px -3px rgb(90,121,79)", margin: "20px 0px", maxHeight: expanded === item._id ? 'maxContent' : 610, display: "flex", flexDirection: "column", justifyContent:"space-between"  }} key={item._id} >
+            <Card sx={{ maxWidth: 345, boxShadow: "0px 10px 15px -3px rgb(203,147,67)", margin: "20px 0px", maxHeight: expanded === item._id ? 'maxContent' : 610, display: "flex", flexDirection: "column", justifyContent:"space-between"  }} key={item._id} >
                 <CardHeader
                 avatar={
                 <Avatar aria-label="recipe">
