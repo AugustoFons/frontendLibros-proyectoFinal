@@ -44,14 +44,7 @@ const obtenerLibros = async () =>{
     setData(Libros)
 }
 
-
 const [expanded, setExpanded] = useState(null);
-
-/* const handleExpandClick = (id) => {
-    setExpanded(id);
-}; */
-
-
 
 return (
     <Box style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly"}}>
