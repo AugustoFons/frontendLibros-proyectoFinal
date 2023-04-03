@@ -11,6 +11,7 @@ import LanguageIcon from '@mui/icons-material/Language';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ImgEspañol from '../images/es.png'
 import ImgIngles from '../images/en.png'
+import Add from './Add';
 
 
 const ExpandMore = styled((props) => {
@@ -47,75 +48,80 @@ const obtenerLibros = async () =>{
 const [expanded, setExpanded] = useState(null);
 
 return (
-    <Box style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly"}}>
-        {
-            data.map((item) => {
-            return(
-            <Card sx={{ maxWidth: 345, boxShadow: "0px 10px 15px -3px rgb(203,147,67)", margin: "20px 0px", maxHeight: expanded === item._id ? 'maxContent' : 610, display: "flex", flexDirection: "column", justifyContent:"space-between"  }} key={item._id} >
-                <CardHeader
-                avatar={
-                <Avatar aria-label="recipe">
-                    <img src={item.cover} alt="" width="100%" style={{  objectFit: 'fill' }}/>
-                </Avatar>
-                }
-                action={
-                <IconButton aria-label="download" color="primary">
-                    {item.language === 'spanish' || item.language === 'español' ? <Es /> : item.language === 'english' || item.language === 'ingles' ? <En /> : <LanguageIcon />}
-                </IconButton>
-                }
-                title={item.title}
-                subheader={`${item.author} - ${item.publisher_date}`}
-                />
-                <CardMedia
-                    component="img"
-                    height="300"
-                    image={item.cover}
-                    alt="Paella dish"
-                    title={item.language}
-                    style={{  objectFit: 'fill' }}
-                />
-                <CardContent>
-                    <Typography variant="body2" color="text.secondary">
-                    {item.content_short}
-                    </Typography>
-                </CardContent>
-                <CardActions disableSpacing>
-                    <IconButton aria-label="download" color="primary" href={item.url_download} target='_blank'>
-                    <CloudDownloadIcon  fontSize='large' />
-                    </IconButton>
-                    <IconButton aria-label="add to favorites" color="primary">
-                    <FavoriteIcon />
-                    </IconButton>
-                    <IconButton aria-label="share" color="primary">
-                    <ShareIcon />
-                    </IconButton>
-                    <ExpandMore
-                    
-                    onClick={() => setExpanded(expanded => expanded === item._id ? null : item._id)}
-                    aria-expanded={expanded}
-                    aria-label="show more"
-                    >
-                    { expanded === item._id
-                        ? <ExpandMoreIcon color="primary" />
-                        : <ExpandLessIcon color="primary" />
+    <>
+        <Add />
+        <Box style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly"}}>
+            {
+                data.map((item) => {
+                return(
+                <Card sx={{ maxWidth: 335, boxShadow: "0px 10px 15px -3px rgb(203,147,67)", margin: "20px 10px", maxHeight: expanded === item._id ? 'maxContent' : 600, display: "flex", flexDirection: "column", justifyContent:"space-between", paddingBottom: "5px"  }} key={item._id} >
+                    <CardHeader
+                    avatar={
+                    <Avatar aria-label="recipe">
+                        <img src={item.cover} alt="" width="100%" style={{  objectFit: 'fill' }}/>
+                    </Avatar>
                     }
-                    </ExpandMore>
-                </CardActions>
-                {
-                expanded === item._id &&
-                <Collapse in={expanded}  unmountOnExit >
+                    action={
+                    <IconButton aria-label="download" color="primary">
+                        {item.language === 'spanish' || item.language === 'Español' ? <Es /> : item.language === 'english' || item.language === 'Ingles' ? <En /> : <LanguageIcon />}
+                    </IconButton>
+                    }
+                    title={item.title}
+                    subheader={`${item.author} - ${item.publisher_date}`}
+                    />
+                    <CardMedia
+                        component="img"
+                        height="275"
+                        image={item.cover}
+                        alt="Paella dish"
+                        title={item.language}
+                        style={{  objectFit: 'fill' }}
+                    />
                     <CardContent>
-                    <Typography paragraph>{item.content}</Typography>
+                        <Typography variant="body2" color="text.secondary">
+                        {item.content_short}
+                        </Typography>
                     </CardContent>
-                </Collapse>
-                }
+                    <CardActions disableSpacing>
+                        <IconButton aria-label="download" color="primary" href={item.url_download} target='_blank'>
+                        <CloudDownloadIcon  fontSize='large' />
+                        </IconButton>
+                        <IconButton aria-label="add to favorites" color="primary">
+                        <FavoriteIcon />
+                        </IconButton>
+                        <IconButton aria-label="share" color="primary">
+                        <ShareIcon />
+                        </IconButton>
+                        <ExpandMore
+                        
+                        onClick={() => setExpanded(expanded => expanded === item._id ? null : item._id)}
+                        aria-expanded={expanded}
+                        aria-label="show more"
+                        >
+                        { expanded === item._id
+                            ? <ExpandMoreIcon color="primary" />
+                            : <ExpandLessIcon color="primary" />
+                        }
+                        </ExpandMore>
+                    </CardActions>
+                    {
+                    expanded === item._id &&
+                    <Collapse in={expanded}  unmountOnExit >
+                        <CardContent>
+                        <Typography  variant="body2" sx={{    hyphens: "auto"
+}}>{item.content}</Typography>
+                        </CardContent>
+                    </Collapse>
+                    }
 
 
-            </Card>
-        )
-        })
-        }
-    </Box>
+                </Card>
+                )
+                })
+            }
+        </Box>
+    </>
+
 )
 }
 
