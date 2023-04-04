@@ -1,10 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Add from './components/Add';
 import NavBar from './components/NavBar'
 import { ThemeProvider , createTheme } from '@mui/material/styles';
-import { Box } from '@mui/material'
 import Libros from "./components/Libros";
 import AddForm from "./components/AddForm";
+import UpdateForm from "./components/UpdateForm";
 
 function App() {
 	const greenTheme = createTheme({
@@ -32,6 +31,7 @@ return (
 				<Routes>
 					<Route path="/" element={<Libros />}></Route>
 					<Route path="/agregar" element={<AddForm />}></Route>
+					<Route path="/editar/:id" element={<UpdateForm />}></Route>
 				</Routes>
 			</BrowserRouter>
         </div>

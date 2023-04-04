@@ -1,13 +1,14 @@
-import { useState } from "react";
+import React from "react";
+import { useState, useEffect } from "react";
 import axios from 'axios';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { TextField, InputLabel, Button, Stack, Select, MenuItem, FormControl, Box } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
 import SendIcon from '@mui/icons-material/Send';
 import '@fontsource/roboto/700.css';
 
 
-const AddForm = () => {
+const UpdateForm = () =>{
+    const params = useParams()
     const [titulo, setTitulo] = useState('');
     const [escritor, setEscritor] = useState('');
     const [descripcion, setDescripcion] = useState('')
@@ -17,9 +18,45 @@ const AddForm = () => {
     const [imagen, setImagen] = useState('')
     const [descarga, setDescarga] = useState('')
     const navegar = useNavigate()
+    const [data, setData] = useState([]);
 
-    function addBook(){
-        const newBook = {
+    useEffect(() => {
+
+        obtenerLibros()
+        }        // eslint-disable-next-line react-hooks/exhaustive-deps
+    );
+    const  obtenerLibros = async () => {
+    let book = (await axios.get('https://backend-proyectofinal-production.up.railway.app/get/' + params.id)).data
+    setData(book.item)
+
+    setTitulo(data.title);
+    setEscritor(data.author);
+    setDescripcion(data.content);
+    setDescripcionBreve(data.content_short);
+    setAño(data.publisher_date);
+    setIdioma(data.language);
+    setImagen(data.cover);
+    setDescarga(data.url_download);
+
+}
+/* useEffect(() => {
+    axios.get('https://backend-proyectofinal-production.up.railway.app/get/' + params.id).then(res => {
+    setData(res.data)
+    console.log(data.item)
+    
+    setTitulo(data.item.title);
+    setEscritor(data.item.author);
+    setDescripcion(data.item.content);
+    setDescripcionBreve(data.item.content_short);
+    setAño(data.item.publisher_date);
+    setIdioma(data.item.language);
+    setImagen(data.item.cover);
+    setDescarga(data.item.url_download);
+})        // eslint-disable-next-line react-hooks/exhaustive-deps
+}, [params.id]); */
+
+    function updateBook(){
+        const editBook = {
             title: titulo,
             author: escritor,
             content: descripcion,
@@ -29,21 +66,23 @@ const AddForm = () => {
             cover: imagen,
             url_download: descarga
         }
-        axios.post('https://backend-proyectofinal-production.up.railway.app/post', newBook)
-        .then(res => console.log(res.data))
-        .then(err => console.log(err))
-        alert('libro agregado')
-        navegar(0)
+        axios.patch('https://backend-proyectofinal-production.up.railway.app/update/' + params.id, editBook).then(res => {
+            console.log(res.data)
+            alert('libro actualizazdo')
+            navegar('/')
+        })
     }
 
     return (
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+            <p>{titulo}titulo</p>
             <Box
                 component="form"
                 sx={{
                     '& .MuiTextField-root': { m: 1, width: { xs:'13ch' ,sm:'25ch'} }, padding: '10px'
                 }}
                 noValidate
+                autoComplete="off"
                 >
                 <div style={{ display: "flex", wrap: "noWrap" }}>
                     <TextField
@@ -80,7 +119,7 @@ const AddForm = () => {
                             >
                             <MenuItem value={'spanish'}>Español</MenuItem>
                             <MenuItem value={'english'}>Ingles</MenuItem>
-                            <MenuItem value={'Otros'}>Otro</MenuItem>
+                            <MenuItem value={'otros'}>Otro</MenuItem>
                         </Select>
                     </FormControl>
                 </div>
@@ -90,6 +129,7 @@ const AddForm = () => {
                         label="URL imagen"
                         multiline
                         variant="standard"
+                        rows={2}
                         value={imagen}
                         onChange={(e) => setImagen(e.target.value)}
                         />
@@ -98,6 +138,7 @@ const AddForm = () => {
                         label="URL descarga"
                         multiline
                         variant="standard"
+                        rows={2}
                         value={descarga}
                         onChange={(e) => setDescarga(e.target.value)}
                         />
@@ -134,16 +175,12 @@ const AddForm = () => {
                 </div>
             </Box>
             <Stack direction="row" spacing={2}>
-                <Button variant="outlined" startIcon={<DeleteIcon />} onClick={() => {setTitulo(''); setEscritor(''); setAño(''); setImagen(''); setDescarga(''); setDescripcionBreve(''); setDescripcion('')}}>
-                    Delete
-                </Button>
-                <Button variant="contained" endIcon={<SendIcon />} onClick={addBook}>
+                <Button variant="contained" endIcon={<SendIcon />} onClick={updateBook}>
                     Send
                 </Button>
             </Stack>
-        </div>
-        
-    );
+        </div>  
+    )
 }
 
-export default AddForm
+export default UpdateForm

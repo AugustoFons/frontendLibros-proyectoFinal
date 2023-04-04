@@ -1,11 +1,12 @@
-import { Box } from '@mui/material'
+import {  } from '@mui/material'
 import axios from 'axios'
+import {Link}  from "react-router-dom";
 import { useState, useEffect } from 'react';
 import { styled } from '@mui/material/styles';
-import { Card, CardHeader, CardMedia, CardContent, CardActions, Collapse, Avatar, IconButton, Typography } from '@mui/material';
+import { Box, Card, CardHeader, CardMedia, CardContent, CardActions, Collapse, Avatar, IconButton, Typography } from '@mui/material';
 import CloudDownloadIcon  from '@mui/icons-material/CloudDownload';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
+import CreateRoundedIcon    from '@mui/icons-material/CreateRounded';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import LanguageIcon from '@mui/icons-material/Language';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
@@ -84,16 +85,18 @@ return (
                     </CardContent>
                     <CardActions disableSpacing>
                         <IconButton aria-label="download" color="primary" href={item.url_download} target='_blank'>
-                        <CloudDownloadIcon  fontSize='large' />
+                            <CloudDownloadIcon  fontSize='large' />
                         </IconButton>
                         <IconButton aria-label="add to favorites" color="primary">
-                        <FavoriteIcon />
+                            <FavoriteIcon />
                         </IconButton>
-                        <IconButton aria-label="share" color="primary">
-                        <ShareIcon />
-                        </IconButton>
-                        <ExpandMore
+                        <Link to={`/editar/${item._id}`} style={{textDecoration: "none"}}>
+                            <IconButton aria-label="share" color="primary" >
+                                <CreateRoundedIcon  />  
+                            </IconButton>
+                        </Link>
                         
+                        <ExpandMore
                         onClick={() => setExpanded(expanded => expanded === item._id ? null : item._id)}
                         aria-expanded={expanded}
                         aria-label="show more"
@@ -108,8 +111,7 @@ return (
                     expanded === item._id &&
                     <Collapse in={expanded}  unmountOnExit >
                         <CardContent>
-                        <Typography  variant="body2" sx={{    hyphens: "auto"
-}}>{item.content}</Typography>
+                        <Typography  variant="body2" sx={{ hyphens: "auto"}}>{item.content}</Typography>
                         </CardContent>
                     </Collapse>
                     }
