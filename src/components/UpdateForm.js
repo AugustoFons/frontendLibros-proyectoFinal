@@ -18,42 +18,24 @@ const UpdateForm = () =>{
     const [imagen, setImagen] = useState('')
     const [descarga, setDescarga] = useState('')
     const navegar = useNavigate()
+
     const [data, setData] = useState([]);
-
     useEffect(() => {
-
-        obtenerLibros()
-        }        // eslint-disable-next-line react-hooks/exhaustive-deps
-    );
-    const  obtenerLibros = async () => {
-    let book = (await axios.get('https://backend-proyectofinal-production.up.railway.app/get/' + params.id)).data
-    setData(book.item)
-
-    setTitulo(data.title);
-    setEscritor(data.author);
-    setDescripcion(data.content);
-    setDescripcionBreve(data.content_short);
-    setAño(data.publisher_date);
-    setIdioma(data.language);
-    setImagen(data.cover);
-    setDescarga(data.url_download);
-
-}
-/* useEffect(() => {
-    axios.get('https://backend-proyectofinal-production.up.railway.app/get/' + params.id).then(res => {
-    setData(res.data)
-    console.log(data.item)
-    
-    setTitulo(data.item.title);
-    setEscritor(data.item.author);
-    setDescripcion(data.item.content);
-    setDescripcionBreve(data.item.content_short);
-    setAño(data.item.publisher_date);
-    setIdioma(data.item.language);
-    setImagen(data.item.cover);
-    setDescarga(data.item.url_download);
-})        // eslint-disable-next-line react-hooks/exhaustive-deps
-}, [params.id]); */
+        obtenerLibros();
+        }, []);
+    const obtenerLibros = async () =>{
+        const Libro = (await axios.get('https://backend-proyectofinal-production.up.railway.app/get/' + params.id)).data
+        console.log(Libro)
+        setData(Libro)
+        setTitulo(Libro.item.title);
+        setEscritor(Libro.item.author)
+        setDescripcion(Libro.item.content)
+        setDescripcionBreve(Libro.item.content_short)
+        setAño(Libro.item.publisher_date)
+        setIdioma(Libro.item.language)
+        setImagen(Libro.item.cover)
+        setDescarga(Libro.item.url_download)
+        }
 
     function updateBook(){
         const editBook = {
@@ -68,7 +50,7 @@ const UpdateForm = () =>{
         }
         axios.patch('https://backend-proyectofinal-production.up.railway.app/update/' + params.id, editBook).then(res => {
             console.log(res.data)
-            alert('libro actualizazdo')
+            alert('libro actualizado')
             navegar('/')
         })
     }

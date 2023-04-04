@@ -80,7 +80,7 @@ return (
                     />
                     <CardContent>
                         <Typography variant="body2" color="text.secondary">
-                        {item.content_short}
+                        {item.content_short}...
                         </Typography>
                     </CardContent>
                     <CardActions disableSpacing>
