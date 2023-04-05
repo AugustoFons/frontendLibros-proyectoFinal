@@ -26,8 +26,8 @@ function App() {
 return (
     <ThemeProvider theme={greenTheme}>
         <div style={{ display: "block"}}>
-			<NavBar />
 			<BrowserRouter>
+				<NavBar />
 				<Routes>
 					<Route path="/" element={<Libros />}></Route>
 					<Route path="/agregar" element={<AddForm />}></Route>

@@ -56,12 +56,11 @@ const UpdateForm = () =>{
     }
 
     return (
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-            <p>{titulo}titulo</p>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: '30px' }}>
             <Box
                 component="form"
                 sx={{
-                    '& .MuiTextField-root': { m: 1, width: { xs:'13ch' ,sm:'25ch'} }, padding: '10px'
+                    '& .MuiTextField-root': { m: 1, width: { xs:'13ch' ,sm:'25ch'} }
                 }}
                 noValidate
                 autoComplete="off"
@@ -137,7 +136,7 @@ const UpdateForm = () =>{
                 <div>
                     <TextField
                             id="outlined-multiline-static"
-                            label="descripcion breve"
+                            label="Descripcion breve o temas"
                             multiline
                             rows={2}
                             value={descripcionBreve}

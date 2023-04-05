@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {Link} from "react-router-dom";
 import { styled, alpha } from '@mui/material/styles';
 import { AppBar, Box, Toolbar, IconButton, Badge, InputBase, Typography  } from '@mui/material';
 import Logo from '../images/logonew.png'
@@ -57,16 +58,18 @@ export default function SearchAppBar() {
     return (
     <Box sx={{ flexGrow: 1 }}>
         <AppBar width="xl" position="static" color="inherit" sx={{ padding: (2, 1, 0, 1) }}>
-            <Toolbar>
-            <Badge  
-                color="primary"
-                noWrap
-                height="100%"
-                sx={{ flexGrow: 1, display: { xs: 'flex', sm: 'flex' }, alignItems: 'center' }}
-            >
-                <img src={Logo} alt="" width={'70rem'}/>
-                <img src={Titulo} alt="" width={'90rem'} style={{ paddingLeft: "10px" }}/> {/* fuente belleza */}
-            </Badge>
+            <Toolbar >
+                <Link to={`/`} style={{ flexGrow: 1 }}>
+                    <Badge  
+                    color="primary"
+                    noWrap
+                    height="100%"
+                    sx={{ flexGrow: 1, display: { xs: 'flex', sm: 'flex' }, alignItems: 'center' }}
+                    >
+                        <img src={Logo} alt="" width={'70rem'}/>
+                        <img src={Titulo} alt="" width={'90rem'} style={{ paddingLeft: "10px" }}/> {/* fuente belleza */}
+                    </Badge>
+                </Link>
             <Search>
                 <SearchIconWrapper>
                 <SearchIcon color="primary" />

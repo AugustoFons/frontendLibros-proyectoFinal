@@ -1,4 +1,3 @@
-import {  } from '@mui/material'
 import axios from 'axios'
 import {Link}  from "react-router-dom";
 import { useState, useEffect } from 'react';
@@ -12,6 +11,7 @@ import LanguageIcon from '@mui/icons-material/Language';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ImgEspañol from '../images/es.png'
 import ImgIngles from '../images/en.png'
+import noimg from '../images/noimg.jpg'
 import Add from './Add';
 
 
@@ -31,6 +31,9 @@ const Es = () => (
 )
 const En = () => (
     <img src={ImgIngles} alt="english - ingles" width="30px" />
+)
+const NotImg = () => (
+    <img src={noimg} alt="" width="100%" style={{  objectFit: 'fill' }}  />
 )
 
 
@@ -59,7 +62,7 @@ return (
                     <CardHeader
                     avatar={
                     <Avatar aria-label="recipe">
-                        <img src={item.cover} alt="" width="100%" style={{  objectFit: 'fill' }}/>
+                        {item.cover !== '' ? <img src={item.cover} alt="" width="100%" style={{  objectFit: 'fill' }}/> : <NotImg />}
                     </Avatar>
                     }
                     action={
@@ -70,14 +73,27 @@ return (
                     title={item.title}
                     subheader={`${item.author} - ${item.publisher_date}`}
                     />
-                    <CardMedia
-                        component="img"
-                        height="275"
-                        image={item.cover}
-                        alt="Paella dish"
-                        title={item.language}
-                        style={{  objectFit: 'fill' }}
-                    />
+                    {
+                        item.cover !== '' 
+                        
+                        ? <CardMedia
+                            component="img"
+                            height="275"
+                            image={item.cover}
+                            alt="cover"
+                            title={item.language}
+                            style={{  objectFit: 'fill' }}
+                            />
+                        : <CardMedia
+                            component="img"
+                            height="275"
+                            image={noimg}
+                            alt="cover"
+                            title={item.language}
+                            style={{  objectFit: 'fill' }}
+                            />
+                    }
+
                     <CardContent>
                         <Typography variant="body2" color="text.secondary">
                         {item.content_short}...

@@ -37,11 +37,11 @@ const AddForm = () => {
     }
 
     return (
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: '30px' }}>
             <Box
                 component="form"
                 sx={{
-                    '& .MuiTextField-root': { m: 1, width: { xs:'13ch' ,sm:'25ch'} }, padding: '10px'
+                    '& .MuiTextField-root': { m: 1, width: { xs:'13ch' ,sm:'25ch'} }
                 }}
                 noValidate
                 >
