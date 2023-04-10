@@ -56,7 +56,7 @@ return (
         <Add />
         <Box style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly"}}>
             {
-                data.map((item) => {
+                [...data].reverse().map((item) => {
                 return(
                 <Card sx={{ maxWidth: 335, boxShadow: "0px 10px 15px -3px rgb(203,147,67)", margin: "20px 10px", maxHeight: expanded === item._id ? 'maxContent' : 600, display: "flex", flexDirection: "column", justifyContent:"space-between", paddingBottom: "5px"  }} key={item._id} >
                     <CardHeader
