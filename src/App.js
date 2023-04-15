@@ -4,6 +4,8 @@ import { ThemeProvider , createTheme } from '@mui/material/styles';
 import Libros from "./components/Libros";
 import AddForm from "./components/AddForm";
 import UpdateForm from "./components/UpdateForm";
+import { useState } from "react";
+import LibrosSearch from "./components/LibrosSearch";
 
 function App() {
 	const greenTheme = createTheme({
@@ -22,14 +24,21 @@ function App() {
 			},
 		}
     })
+	const [searchValue, setSearchValue] = useState('')
+	console.log(searchValue)
 
 return (
     <ThemeProvider theme={greenTheme}>
         <div style={{ display: "block"}}>
 			<BrowserRouter>
-				<NavBar />
+				<NavBar setSearchValue={setSearchValue} searchValue={searchValue} />
 				<Routes>
-					<Route path="/" element={<Libros />}></Route>
+					{
+						!searchValue.length >= 1
+						?	<Route path="/" element={<Libros />}></Route>
+						:	<Route path="/" element={<LibrosSearch searchValue={searchValue} />}></Route>
+
+					}
 					<Route path="/agregar" element={<AddForm />}></Route>
 					<Route path="/editar/:id" element={<UpdateForm />}></Route>
 				</Routes>
