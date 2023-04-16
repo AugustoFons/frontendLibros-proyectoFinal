@@ -1,0 +1,17 @@
+
+
+.loading {
+    animation: text-blur-out 1.8s cubic-bezier(0.550, 0.085, 0.680, 0.530) reverse both;
+        
+    }
+
+    @keyframes text-blur-out {
+        0% {
+            -webkit-filter: blur(0.01);
+                    filter: blur(0.01);
+        }
+        100% {
+            -webkit-filter: blur(12px) opacity(0%);
+                    filter: blur(12px) opacity(0%);
+        }
+        }

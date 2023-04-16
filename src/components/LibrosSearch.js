@@ -1,4 +1,5 @@
 import axios from 'axios'
+import '../css/animaciones.css'
 import {Link}  from "react-router-dom";
 import { useState, useEffect } from 'react';
 import { styled } from '@mui/material/styles';
@@ -13,6 +14,7 @@ import ImgEspañol from '../images/es.png'
 import ImgIngles from '../images/en.png'
 import noimg from '../images/noimg.jpg'
 import Add from './Add';
+import CircularProgress from '@mui/material/CircularProgress';
 
 
 const ExpandMore = styled((props) => {
@@ -49,7 +51,7 @@ const LibrosSearch = ({searchValue}) => {
         setData(Libros)
     }
 
-    let searchedBook = [];
+    let searchedBook = ['null'];
     searchedBook = data.filter(book => {
         const bookTitle = book.title.toLowerCase();
         const bookAuthor = book.author.toLowerCase();
@@ -57,12 +59,23 @@ const LibrosSearch = ({searchValue}) => {
         return bookTitle.includes(searchText) || bookAuthor.includes(searchText);           
     });
 
+    function CircularUnderLoad() {
+        if(searchedBook.length === 0){
+        return <CircularProgress disableShrink />
+        }
+    }
+
     const [expanded, setExpanded] = useState(null);
 
 
 return (
     <>
         <Add />
+        <Box timeout={5000} sx={{display:"flex", justifyContent:"center", alignItems:"center"}}>
+            <Typography variant="body2" color="text.secondary" className='loading'>
+                Coincidencias: {searchedBook.length}
+            </Typography> 
+        </Box>
         <Box style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly"}}>
             {
                 searchedBook.map(item => {
@@ -140,15 +153,18 @@ return (
                         </CardContent>
                     </Collapse>
                     }
-
-
                 </Card>
                 )
                 })
             }
-        </Box>
-    </>
+            </Box>
+            <Box sx={{display:"flex", justifyContent:"center", alignItems:"center", height:"50vh"}}>
+                <Typography variant="h2" color="text.secondary">
+                    {searchedBook.length !== 0 ? '' : CircularUnderLoad()}
+                </Typography> 
+            </Box>
 
+        </>
 )
 }
 
