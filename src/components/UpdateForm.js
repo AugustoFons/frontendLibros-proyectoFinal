@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from 'axios';
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { TextField, InputLabel, Button, Stack, Select, MenuItem, FormControl, Box } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import '@fontsource/roboto/700.css';
@@ -19,8 +19,10 @@ const UpdateForm = () =>{
     const [descarga, setDescarga] = useState('')
 
     const [data, setData] = useState([]);
+    console.log(data)
     useEffect(() => {
         obtenerLibros();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         }, []);
     const obtenerLibros = async () =>{
         const Libro = (await axios.get('https://backend-proyectofinal-production.up.railway.app/get/' + params.id)).data

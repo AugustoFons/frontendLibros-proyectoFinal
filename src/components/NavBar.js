@@ -74,7 +74,7 @@ export default function SearchAppBar({setSearchValue, searchValue}) {
                         color="primary"
                         noWrap
                         height="100%"
-                        sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
+                        sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', padding: 1 }}>
                             <img src={Logo} alt="logo libros" width={'60rem'} />
                             <img src={Titulo} alt="titulo" width={'70rem'} style={{ paddingLeft: "10px" }}/>
                         </Badge>
@@ -87,7 +87,7 @@ export default function SearchAppBar({setSearchValue, searchValue}) {
                     color="primary"
                     noWrap
                     height="100%"
-                    sx={{ flexGrow: 1, display: { xs: 'flex', sm: 'flex' }, alignItems: 'center' }}
+                    sx={{ flexGrow: 1, display: { xs: 'flex', sm: 'flex' }, alignItems: 'center', padding: 1 }}
                     >
                         {matches &&
                         <>
