@@ -67,21 +67,27 @@ export default function SearchAppBar({setSearchValue, searchValue}) {
     }, []);
 
     return (
-    <Box sx={{ display: "flex", flexGrow: 1, flexDirection:"column", alignItems:"center" }}>
-        {!matches &&
-            <Box sx={{display: "flex", padding: (2, 1, 0, 1), alignItems: 'center'}}>
-            <img src={Logo} alt="logo libros" width={'60rem'} />
-            <img src={Titulo} alt="titulo" width={'70rem'} style={{ paddingLeft: "10px" }}/>
-            </Box>
-        }
-        <AppBar width="xl" position="static" color="inherit" >
+    <Box  sx={{ display: "flex", flexGrow: 1, flexDirection:"column", alignItems:"center" }}>
+                {!matches &&
+                    <Link to={`/`} style={{ flexGrow: 1 }}>
+                        <Badge  
+                        color="primary"
+                        noWrap
+                        height="100%"
+                        sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
+                            <img src={Logo} alt="logo libros" width={'60rem'} />
+                            <img src={Titulo} alt="titulo" width={'70rem'} style={{ paddingLeft: "10px" }}/>
+                        </Badge>
+                    </Link>
+                }
+        <AppBar width="xl" position="static" color="transparent"  >
             <Toolbar >
                 <Link to={`/`} style={{ flexGrow: 1 }}>
                     <Badge  
                     color="primary"
                     noWrap
                     height="100%"
-                    sx={{ flexGrow: 1, display: { xs: 'flex', sm: 'flex' }, alignItems: 'center',  }}
+                    sx={{ flexGrow: 1, display: { xs: 'flex', sm: 'flex' }, alignItems: 'center' }}
                     >
                         {matches &&
                         <>
