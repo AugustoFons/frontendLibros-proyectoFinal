@@ -1,13 +1,13 @@
 import * as React from 'react';
 import {Link} from "react-router-dom";
 import { styled, alpha } from '@mui/material/styles';
-import { AppBar, Box, Toolbar, IconButton, Badge, InputBase, Typography  } from '@mui/material';
+import { AppBar, Box, Toolbar, IconButton, Badge, InputBase  } from '@mui/material';
 import Logo from '../images/logonew.png'
 import Titulo from '../images/librosp.png'
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import '@fontsource/roboto/500.css';
-
+import { useEffect, useState } from 'react';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -57,20 +57,38 @@ export default function SearchAppBar({setSearchValue, searchValue}) {
         setSearchValue(event.target.value);
     }
 
+    const [matches, setMatches] = useState(
+        window.matchMedia("(min-width: 768px)").matches
+    )
+    useEffect(() => {
+        window
+        .matchMedia("(min-width: 592px)")
+        .addEventListener('change', e => setMatches( e.matches ));
+    }, []);
 
     return (
-    <Box sx={{ flexGrow: 1 }}>
-        <AppBar width="xl" position="static" color="inherit" sx={{ padding: (2, 1, 0, 1) }}>
+    <Box sx={{ display: "flex", flexGrow: 1, flexDirection:"column", alignItems:"center" }}>
+        {!matches &&
+            <Box sx={{display: "flex", padding: (2, 1, 0, 1), alignItems: 'center'}}>
+            <img src={Logo} alt="logo libros" width={'60rem'} />
+            <img src={Titulo} alt="titulo" width={'70rem'} style={{ paddingLeft: "10px" }}/>
+            </Box>
+        }
+        <AppBar width="xl" position="static" color="inherit" >
             <Toolbar >
                 <Link to={`/`} style={{ flexGrow: 1 }}>
                     <Badge  
                     color="primary"
                     noWrap
                     height="100%"
-                    sx={{ flexGrow: 1, display: { xs: 'flex', sm: 'flex' }, alignItems: 'center' }}
+                    sx={{ flexGrow: 1, display: { xs: 'flex', sm: 'flex' }, alignItems: 'center',  }}
                     >
-                        <img src={Logo} alt="" width={'70rem'}/>
-                        <img src={Titulo} alt="" width={'90rem'} style={{ paddingLeft: "10px" }}/> {/* fuente belleza */}
+                        {matches &&
+                        <>
+                        <img src={Logo} alt="logo libros" width={'70rem'} />
+                        <img src={Titulo} alt="titulo" width={'90rem'} style={{ paddingLeft: "10px" }}/>
+                        </>
+                        }
                     </Badge>
                 </Link>
             <Search>

@@ -17,7 +17,6 @@ const UpdateForm = () =>{
     const [idioma, setIdioma] = useState('')
     const [imagen, setImagen] = useState('')
     const [descarga, setDescarga] = useState('')
-    const navegar = useNavigate()
 
     const [data, setData] = useState([]);
     useEffect(() => {
@@ -51,7 +50,7 @@ const UpdateForm = () =>{
         axios.patch('https://backend-proyectofinal-production.up.railway.app/update/' + params.id, editBook).then(res => {
             console.log(res.data)
             alert('libro actualizado')
-            navegar('/')
+            window.location.replace('/'); //uso el window location para que me recargue el pedido get a la base de datos con el libro actualizado
         })
     }
 
@@ -140,6 +139,7 @@ const UpdateForm = () =>{
                             multiline
                             rows={2}
                             value={descripcionBreve}
+                            inputProps={{ maxLength: 280 }}
                             onChange={(e) => setDescripcionBreve(e.target.value)}
                             />
                 </div>

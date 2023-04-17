@@ -1,10 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import axios from 'axios'
 import NavBar from './components/NavBar'
 import { ThemeProvider , createTheme } from '@mui/material/styles';
 import Libros from "./components/Libros";
 import AddForm from "./components/AddForm";
 import UpdateForm from "./components/UpdateForm";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import LibrosSearch from "./components/LibrosSearch";
 
 function App() {
@@ -24,6 +25,18 @@ function App() {
 			},
 		}
     })
+
+	/*** obtener libros de la db ****/
+	const [data, setData] = useState([]);
+	useEffect(() => {
+		obtenerLibros();
+		}, []);
+	const obtenerLibros = async () =>{
+		const Libros = (await axios.get("https://backend-proyectofinal-production.up.railway.app/get")).data
+		setData(Libros)
+	}
+
+	/*** guardar el valor que entra por el input del buscador ***/
 	const [searchValue, setSearchValue] = useState('')
 	console.log(searchValue)
 
@@ -35,8 +48,8 @@ return (
 				<Routes>
 					{
 						!searchValue.length >= 1
-						?	<Route path="/" element={<Libros />}></Route>
-						:	<Route path="/" element={<LibrosSearch searchValue={searchValue} />}></Route>
+						?	<Route path="/" element={<Libros data={data}/>}></Route>
+						:	<Route path="/" element={<LibrosSearch searchValue={searchValue} data={data} />}></Route>
 
 					}
 					<Route path="/agregar" element={<AddForm />}></Route>

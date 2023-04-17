@@ -1,6 +1,5 @@
-import axios from 'axios'
 import {Link}  from "react-router-dom";
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { styled } from '@mui/material/styles';
 import { Box, Card, CardHeader, CardMedia, CardContent, CardActions, Collapse, Avatar, IconButton, Typography } from '@mui/material';
 import CloudDownloadIcon  from '@mui/icons-material/CloudDownload';
@@ -37,17 +36,9 @@ const NotImg = () => (
 )
 
 
-const Libros = () => {
+const Libros = ({data}) => {
 
-const [data, setData] = useState([]);
-useEffect(() => {
-    obtenerLibros();
-    }, []);
-const obtenerLibros = async () =>{
-    const Libros = (await axios.get("https://backend-proyectofinal-production.up.railway.app/get")).data
-    console.log(Libros)
-    setData(Libros)
-}
+
 
 const [expanded, setExpanded] = useState(null);
 
@@ -58,7 +49,7 @@ return (
             {
                 [...data].reverse().map((item) => {
                 return(
-                <Card sx={{ maxWidth: 335, boxShadow: "0px 10px 15px -3px rgb(203,147,67)", margin: "20px 10px", maxHeight: expanded === item._id ? 'maxContent' : 600, display: "flex", flexDirection: "column", justifyContent:"space-between", paddingBottom: "5px"  }} key={item._id} >
+                <Card sx={{ maxWidth: 335, boxShadow: "0px 10px 15px -3px rgb(203,147,67)", margin: "20px 10px", maxHeight: expanded === item._id ? 'maxContent' : 650, display: "flex", flexDirection: "column", justifyContent:"space-between", paddingBottom: "5px"  }} key={item._id} >
                     <CardHeader
                     avatar={
                     <Avatar aria-label="recipe">
@@ -78,7 +69,7 @@ return (
                         
                         ? <CardMedia
                             component="img"
-                            height="275"
+                            height="275px"
                             image={item.cover}
                             alt="cover"
                             title={item.language}
@@ -86,7 +77,7 @@ return (
                             />
                         : <CardMedia
                             component="img"
-                            height="275"
+                            height="265px"
                             image={noimg}
                             alt="cover"
                             title={item.language}
@@ -94,7 +85,7 @@ return (
                             />
                     }
 
-                    <CardContent>
+                    <CardContent sx={{ overflow: "hidden" }}>
                         <Typography variant="body2" color="text.secondary">
                         {item.content_short}...
                         </Typography>

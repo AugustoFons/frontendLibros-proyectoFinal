@@ -1,7 +1,5 @@
-import axios from 'axios'
-import '../css/animaciones.css'
 import {Link}  from "react-router-dom";
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { styled } from '@mui/material/styles';
 import { Box, Card, CardHeader, CardMedia, CardContent, CardActions, Collapse, Avatar, IconButton, Typography } from '@mui/material';
 import CloudDownloadIcon  from '@mui/icons-material/CloudDownload';
@@ -14,8 +12,6 @@ import ImgEspañol from '../images/es.png'
 import ImgIngles from '../images/en.png'
 import noimg from '../images/noimg.jpg'
 import Add from './Add';
-import CircularProgress from '@mui/material/CircularProgress';
-
 
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
@@ -39,31 +35,16 @@ const NotImg = () => (
 )
 
 
-const LibrosSearch = ({searchValue}) => {
-
-
-    const [data, setData] = useState([]);
-    useEffect(() => {
-        obtenerLibros();
-        }, []);
-    const obtenerLibros = async () =>{
-        const Libros = (await axios.get("https://backend-proyectofinal-production.up.railway.app/get")).data
-        setData(Libros)
-    }
+const LibrosSearch = ({searchValue, data}) => {
 
     let searchedBook = ['null'];
     searchedBook = data.filter(book => {
-        const bookTitle = book.title.toLowerCase();
-        const bookAuthor = book.author.toLowerCase();
-        let searchText = searchValue.toLowerCase();
-        return bookTitle.includes(searchText) || bookAuthor.includes(searchText);           
-    });
-
-    function CircularUnderLoad() {
-        if(searchedBook.length === 0){
-        return <CircularProgress disableShrink />
-        }
-    }
+        const bookTitle = book.title.toLowerCase()
+        const bookAuthor = book.author.toLowerCase()
+        const bookDescription = book.content.toLowerCase()
+        let searchText = searchValue.toLowerCase().split(' ').join('');
+        return bookTitle.includes(searchText) || bookAuthor.includes(searchText) || bookDescription.includes(searchText)            
+    }) 
 
     const [expanded, setExpanded] = useState(null);
 
@@ -158,9 +139,9 @@ return (
                 })
             }
             </Box>
-            <Box sx={{display:"flex", justifyContent:"center", alignItems:"center", height:"50vh"}}>
-                <Typography variant="h2" color="text.secondary">
-                    {searchedBook.length !== 0 ? '' : CircularUnderLoad()}
+            <Box sx={{display:"flex", justifyContent:"center", alignItems:"center", height:"20vh"}}>
+                <Typography variant="h4" color="text.secondary">
+                    {searchedBook.length !== 0 ? '' : 'No hay resultados que coincidan con su busqueda'}
                 </Typography> 
             </Box>
 

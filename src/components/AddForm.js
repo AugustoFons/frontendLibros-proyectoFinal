@@ -118,6 +118,7 @@ const AddForm = () => {
                             multiline
                             rows={2}
                             value={descripcionBreve}
+                            inputProps={{ maxLength: 280 }}
                             onChange={(e) => setDescripcionBreve(e.target.value)}
                             />
                 </div>
