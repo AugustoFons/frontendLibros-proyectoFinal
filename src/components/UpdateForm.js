@@ -25,7 +25,7 @@ const UpdateForm = () =>{
         // eslint-disable-next-line react-hooks/exhaustive-deps
         }, []);
     const obtenerLibros = async () =>{
-        const Libro = (await axios.get('https://backend-proyectofinal-production.up.railway.app/get/' + params.id)).data
+        const Libro = (await axios.get('https://ochre-fawn-wrap.cyclic.app/get/' + params.id)).data
         console.log(Libro)
         setData(Libro)
         setTitulo(Libro.item.title);
@@ -49,7 +49,7 @@ const UpdateForm = () =>{
             cover: imagen,
             url_download: descarga
         }
-        axios.patch('https://backend-proyectofinal-production.up.railway.app/update/' + params.id, editBook).then(res => {
+        axios.patch('https://ochre-fawn-wrap.cyclic.app/update/' + params.id, editBook).then(res => {
             console.log(res.data)
             alert('libro actualizado')
             window.location.replace('/'); //uso el window location para que me recargue el pedido get a la base de datos con el libro actualizado

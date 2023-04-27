@@ -29,7 +29,7 @@ const AddForm = () => {
             cover: imagen,
             url_download: descarga
         }
-        axios.post('https://backend-proyectofinal-production.up.railway.app/post', newBook)
+        axios.post('https://ochre-fawn-wrap.cyclic.app/post', newBook)
         .then(res => console.log(res.data))
         .then(err => console.log(err))
         alert('libro agregado')

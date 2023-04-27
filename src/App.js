@@ -32,7 +32,7 @@ function App() {
 		obtenerLibros();
 		}, []);
 	const obtenerLibros = async () =>{
-		const Libros = (await axios.get("https://backend-proyectofinal-production.up.railway.app/get")).data
+		const Libros = (await axios.get("https://ochre-fawn-wrap.cyclic.app/get")).data
 		setData(Libros)
 	}
 
