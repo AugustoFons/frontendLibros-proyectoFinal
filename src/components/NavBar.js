@@ -4,7 +4,7 @@ import { styled, alpha } from '@mui/material/styles';
 import { AppBar, Box, Toolbar, IconButton, Badge, InputBase  } from '@mui/material';
 import Logo from '../images/logonew.png'
 import Titulo from '../images/librosp.png'
-import MenuIcon from '@mui/icons-material/Menu';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import SearchIcon from '@mui/icons-material/Search';
 import '@fontsource/roboto/500.css';
 import { useEffect, useState } from 'react';
@@ -67,9 +67,11 @@ export default function SearchAppBar({setSearchValue, searchValue}) {
     }, []);
 
     return (
-    <Box  sx={{ display: "flex", flexGrow: 1, flexDirection:"column", alignItems:"center" }}>
+    <Box  sx={{ display: "flex", flexGrow: 1, flexDirection:"column" }}>
+                
+        <AppBar width="xl" position="static" color="transparent" sx={{ alignItems:"center"}} >
                 {!matches &&
-                    <Link to={`/`} style={{ flexGrow: 1 }}>
+                        <Link to={`/`} style={{ flexGrow: 1 }}>
                         <Badge  
                         color="primary"
                         noWrap
@@ -78,9 +80,9 @@ export default function SearchAppBar({setSearchValue, searchValue}) {
                             <img src={Logo} alt="logo libros" width={'60rem'} />
                             <img src={Titulo} alt="titulo" width={'70rem'} style={{ paddingLeft: "10px" }}/>
                         </Badge>
-                    </Link>
+                        </Link>
+
                 }
-        <AppBar width="xl" position="static" color="transparent"  >
             <Toolbar >
                 <Link to={`/`} style={{ flexGrow: 1 }}>
                     <Badge  
@@ -114,7 +116,7 @@ export default function SearchAppBar({setSearchValue, searchValue}) {
                 aria-label="open drawer"
                 sx={{ mr: 2 }}
             >
-                <MenuIcon color="primary" />
+                <InfoOutlinedIcon color="primary" />
             </IconButton>
             </Toolbar>
         </AppBar>

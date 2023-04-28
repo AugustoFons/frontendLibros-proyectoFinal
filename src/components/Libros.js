@@ -129,7 +129,7 @@ return (
                 )
                 })
                 :
-                <Stack sx={{ color: 'grey.500' }} spacing={2} direction="row">
+                <Stack sx={{ color: 'grey.500', marginTop: '70px' }} spacing={2} direction="row">
                     <CircularProgress color="secondary" />
                 </Stack>
             }
