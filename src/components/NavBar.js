@@ -69,7 +69,7 @@ export default function SearchAppBar({setSearchValue, searchValue}) {
     return (
     <Box  sx={{ display: "flex", flexGrow: 1, flexDirection:"column" }}>
                 
-        <AppBar width="xl" position="static" color="transparent" sx={{ alignItems:"center"}} >
+        <AppBar width="xl" position="static" color="transparent" sx={{alignItems: !matches ? 'center' : null}}  >
                 {!matches &&
                         <Link to={`/`} style={{ flexGrow: 1 }}>
                         <Badge  
@@ -84,21 +84,23 @@ export default function SearchAppBar({setSearchValue, searchValue}) {
 
                 }
             <Toolbar >
+            {matches &&
+
                 <Link to={`/`} style={{ flexGrow: 1 }}>
                     <Badge  
                     color="primary"
                     noWrap
                     height="100%"
-                    sx={{ flexGrow: 1, display: { xs: 'flex', sm: 'flex' }, alignItems: 'center', padding: 1 }}
+                    sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', padding: 1 }}
                     >
-                        {matches &&
                         <>
                         <img src={Logo} alt="logo libros" width={'70rem'} />
                         <img src={Titulo} alt="titulo" width={'90rem'} style={{ paddingLeft: "10px" }}/>
                         </>
-                        }
                     </Badge>
                 </Link>
+            }
+
             <Search>
                 <SearchIconWrapper>
                 <SearchIcon color="primary" />
