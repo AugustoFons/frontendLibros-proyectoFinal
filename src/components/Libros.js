@@ -1,7 +1,7 @@
 import {Link}  from "react-router-dom";
 import { useState } from 'react';
 import { styled } from '@mui/material/styles';
-import { Box, Card, CardHeader, CardMedia, CardContent, CardActions, Collapse, Avatar, IconButton, Typography } from '@mui/material';
+import { Box, Card, CardHeader, CardMedia, CardContent, CardActions, Collapse, Avatar, IconButton, Typography, Stack } from '@mui/material';
 import CloudDownloadIcon  from '@mui/icons-material/CloudDownload';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import CreateRoundedIcon    from '@mui/icons-material/CreateRounded';
@@ -12,7 +12,7 @@ import ImgEspañol from '../images/es.png'
 import ImgIngles from '../images/en.png'
 import noimg from '../images/noimg.jpg'
 import Add from './Add';
-
+import CircularProgress from '@mui/material/CircularProgress';
 
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
@@ -46,7 +46,8 @@ return (
     <>
         <Add />
         <Box style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly"}}>
-            {
+            { [...data].length !== 0
+            ?
                 [...data].reverse().map((item) => {
                 return(
                 <Card sx={{ maxWidth: 335, boxShadow: "0px 10px 15px -3px rgb(203,147,67)", margin: "20px 10px", maxHeight: expanded === item._id ? 'maxContent' : 650, display: "flex", flexDirection: "column", justifyContent:"space-between", paddingBottom: "5px"  }} key={item._id} >
@@ -127,6 +128,10 @@ return (
                 </Card>
                 )
                 })
+                :
+                <Stack sx={{ color: 'grey.500' }} spacing={2} direction="row">
+                    <CircularProgress color="secondary" />
+                </Stack>
             }
         </Box>
     </>
