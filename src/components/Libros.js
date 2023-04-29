@@ -1,4 +1,4 @@
-import {Link}  from "react-router-dom";
+import { Link }  from "react-router-dom";
 import { useState } from 'react';
 import { styled } from '@mui/material/styles';
 import { Box, Card, CardHeader, CardMedia, CardContent, CardActions, Collapse, Avatar, IconButton, Typography, Stack, CircularProgress } from '@mui/material';
@@ -37,11 +37,9 @@ const NotImg = () => (
 
 const Libros = ({data}) => {
 
+    const [expanded, setExpanded] = useState(null);
 
-
-const [expanded, setExpanded] = useState(null);
-
-return (
+    return (
     <>
         <Add />
         <Box style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly"}}>
@@ -95,7 +93,7 @@ return (
                             <CloudDownloadIcon fontSize='large' />
                         </IconButton>
                         <IconButton aria-label="add to favorites" color="primary">
-                            <ModelComments />
+                            <ModelComments itemComments={item.comments} />
                         </IconButton>
                         <Link to={`/editar/${item._id}`} style={{textDecoration: "none"}}>
                             <IconButton aria-label="share" color="primary" >
@@ -134,8 +132,7 @@ return (
             }
         </Box>
     </>
-
-)
+    )
 }
 
 export default Libros
