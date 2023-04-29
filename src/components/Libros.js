@@ -1,18 +1,17 @@
 import {Link}  from "react-router-dom";
 import { useState } from 'react';
 import { styled } from '@mui/material/styles';
-import { Box, Card, CardHeader, CardMedia, CardContent, CardActions, Collapse, Avatar, IconButton, Typography, Stack } from '@mui/material';
-import CloudDownloadIcon  from '@mui/icons-material/CloudDownload';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import CreateRoundedIcon    from '@mui/icons-material/CreateRounded';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { Box, Card, CardHeader, CardMedia, CardContent, CardActions, Collapse, Avatar, IconButton, Typography, Stack, CircularProgress } from '@mui/material';
+import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
+import CreateRoundedIcon from '@mui/icons-material/CreateRounded';
 import LanguageIcon from '@mui/icons-material/Language';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ImgEspañol from '../images/es.png'
 import ImgIngles from '../images/en.png'
 import noimg from '../images/noimg.jpg'
 import Add from './Add';
-import CircularProgress from '@mui/material/CircularProgress';
+import ModelComments from './modalComments';
 
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
@@ -93,10 +92,10 @@ return (
                     </CardContent>
                     <CardActions disableSpacing>
                         <IconButton aria-label="download" color="primary" href={item.url_download} target='_blank'>
-                            <CloudDownloadIcon  fontSize='large' />
+                            <CloudDownloadIcon fontSize='large' />
                         </IconButton>
                         <IconButton aria-label="add to favorites" color="primary">
-                            <FavoriteIcon />
+                            <ModelComments />
                         </IconButton>
                         <Link to={`/editar/${item._id}`} style={{textDecoration: "none"}}>
                             <IconButton aria-label="share" color="primary" >
