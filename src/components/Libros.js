@@ -93,7 +93,7 @@ const Libros = ({data}) => {
                             <CloudDownloadIcon fontSize='large' />
                         </IconButton>
                         <IconButton aria-label="add to favorites" color="primary">
-                            <ModelComments itemComments={item.comments} />
+                            <ModelComments item={item} />
                         </IconButton>
                         <Link to={`/editar/${item._id}`} style={{textDecoration: "none"}}>
                             <IconButton aria-label="share" color="primary" >

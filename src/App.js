@@ -50,7 +50,6 @@ return (
 						!searchValue.length >= 1
 						?	<Route path="/" element={<Libros data={data}/>}></Route>
 						:	<Route path="/" element={<LibrosSearch searchValue={searchValue} data={data} />}></Route>
-
 					}
 					<Route path="/agregar" element={<AddForm />}></Route>
 					<Route path="/editar/:id" element={<UpdateForm />}></Route>
