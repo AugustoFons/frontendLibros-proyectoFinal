@@ -51,7 +51,7 @@ return (
 					{
 						!searchValue.length >= 1
 						?	<Route path="/" element={<Libros db={db} obtenerLibros={obtenerLibros}/>}></Route>
-						:	<Route path="/" element={<LibrosSearch searchValue={searchValue} db={db} />}></Route>
+						:	<Route path="/" element={<LibrosSearch searchValue={searchValue} db={db} obtenerLibros={obtenerLibros} />}></Route>
 					}
 					<Route path="/agregar" element={<AddForm />}></Route>
 					<Route path="/editar/:id" element={<UpdateForm />}></Route>

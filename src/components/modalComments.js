@@ -1,28 +1,44 @@
 import * as React from 'react';
 import { useState } from "react";
 import axios from 'axios';
-import {Box, Modal, Badge, List, ListItem, Divider, ListItemText, TextField, Typography, Button, Stack } from '@mui/material/';
+import {Box, Modal, Badge, List, ListItem, Divider, ListItemText, TextField, Typography, Button, Stack, Rating } from '@mui/material/';
 import CommentIcon from '@mui/icons-material/InsertComment';
 import MarkChatReadTwoToneIcon from '@mui/icons-material/MarkChatReadTwoTone';
 import CommentsDisabledIcon from '@mui/icons-material/CommentsDisabled';
 import { IconButton } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
+import BackspaceIcon from '@mui/icons-material/Backspace';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
-import Rating from '@mui/material/Rating';
+import { styled } from '@mui/material/styles';
+
 
 
 const style = {
     position: 'absolute',
     top: '50%',
     left: '50%',
+	maxHeight:'100%',
     transform: 'translate(-50%, -50%)',
     bgcolor: 'background.paper',
-    border: '3px solid secondary',
+    border: '1px solid #D99054',
 	borderRadius: '15px',
     boxShadow: 44,
     p: 3,
+	pt: 1,
+	pb: 1,
+	overflowY: 'auto',
+	mb:2
     };
+
+	const StyledRating = styled(Rating)({
+		'& .MuiRating-iconFilled': {
+			color: '#FF7F00',
+		},
+		'& .MuiRating-iconHover': {
+			color: '#FF7F00',
+		},
+		});
 
 	const initialForm = {
 		name: '',        
@@ -58,9 +74,15 @@ export default function BasicModal({item, obtenerLibros, title}) {
         ...comentarios,
         [e.target.name]: e.target.value 
     })
+
 	const handleSubmit = (e) => {
         e.preventDefault() //evita recargas en el submit
-            addComment(comentarios)
+        addComment(comentarios)
+		handleReset()
+    }
+
+	const handleReset = () => {
+        setComentarios(initialForm);
     }
 
 	/*** funciones mui ***/ 
@@ -84,7 +106,7 @@ export default function BasicModal({item, obtenerLibros, title}) {
 			aria-describedby="modal-modal-description"
 			>
 			<Box sx={style}>
-				<Typography variant="body1" component="h2" sx={{textAlign: 'center', alignItems: 'center', mb: '20px'}}>
+				<Typography variant="body1" component="h2" sx={{textAlign: 'center', alignItems: 'center', mb: '5px'}}>
 				{title}
 				</Typography>
 				<Divider />
@@ -100,18 +122,18 @@ export default function BasicModal({item, obtenerLibros, title}) {
 					</ListItem>
 					: null
 				}
-				<List sx={{ width: '100%', bgcolor: 'background.paper', maxHeight: '300px', overflowY: 'auto'}}>
+				<List sx={{ width: '100%', bgcolor: 'background.paper', maxHeight: '250px', overflowY: 'auto'}}>
 					{[...item.comments].map((comment) => {
 					return (
 					<>
 						<ListItem alignItems="flex-start" style={{hyphens: "auto"}}>
-							<IconButton color="secondary">
+							<IconButton color="primary">
 								<MarkChatReadTwoToneIcon  fontSize='large' />
 							</IconButton>
 							<ListItemText
 								primary={
 									<React.Fragment>
-										<Rating name="read-only" value={comment.split('—')[0]} readOnly />
+										<StyledRating name="read-only" value={comment.split('—')[0]} color='secondary' readOnly />
 									</React.Fragment>
 								}
 								secondary={
@@ -149,7 +171,8 @@ export default function BasicModal({item, obtenerLibros, title}) {
 						placeholder='Nombre'
 						name='name'
 						value={comentarios.name}
-						onChange={handleChange}				
+						onChange={handleChange}
+						autoFocus				
 						/>
 					<Box
 						sx={{
@@ -157,7 +180,7 @@ export default function BasicModal({item, obtenerLibros, title}) {
 						}}
 						>
 							<Typography component="legend">Puntuacion</Typography>
-							<Rating
+							<StyledRating
 							name="simple-controlled"
 							value={value}
 							onChange={(event, newValue) => {
@@ -182,7 +205,7 @@ export default function BasicModal({item, obtenerLibros, title}) {
 					<Button variant="contained" type='submit' endIcon={<SendIcon />}>
 						Enviar
 					</Button>
-					<Button onClick={handleClose} variant="outlined" type='submit' endIcon={<SendIcon />}>
+					<Button onClick={handleClose} variant="contained" color='secondary' type='submit' endIcon={<BackspaceIcon />}>
 						Cerrar
 					</Button>
 				</Stack>

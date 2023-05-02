@@ -159,7 +159,7 @@ const UpdateForm = () =>{
             </Box>
             <Stack direction="row" spacing={2}>
                 <Button variant="contained" endIcon={<SendIcon />} disabled onClick={updateBook}>
-                    Send
+                    Enviar
                 </Button>
             </Stack>
         </div>  

@@ -136,10 +136,10 @@ const AddForm = () => {
             </Box>
             <Stack direction="row" spacing={2}>
                 <Button variant="outlined" startIcon={<DeleteIcon />} onClick={() => {setTitulo(''); setEscritor(''); setAño(''); setImagen(''); setDescarga(''); setDescripcionBreve(''); setDescripcion('')}}>
-                    Delete
+                    Limpiar
                 </Button>
                 <Button variant="contained" endIcon={<SendIcon />} onClick={addBook}>
-                    Send
+                    Enviar
                 </Button>
             </Stack>
         </div>

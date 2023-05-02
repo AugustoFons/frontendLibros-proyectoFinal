@@ -36,7 +36,7 @@ const NotImg = () => (
 )
 
 
-const LibrosSearch = ({searchValue, db}) => {
+const LibrosSearch = ({searchValue, db, obtenerLibros}) => {
 
     let searchedBook = ['null'];
     searchedBook = db.filter(book => {
@@ -108,7 +108,7 @@ return (
                                     <CloudDownloadIcon fontSize='large' />
                                 </IconButton>
                                 <IconButton aria-label="add to favorites" color="primary">
-                                    <ModelComments item={item} />
+                                    <ModelComments item={item} title={item.title} obtenerLibros={obtenerLibros}/>
                                 </IconButton>
                                 <Link to={`/editar/${item._id}`} style={{textDecoration: "none"}}>
                                     <IconButton aria-label="share" color="primary" >
