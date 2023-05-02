@@ -7,6 +7,7 @@ import AddForm from "./components/AddForm";
 import UpdateForm from "./components/UpdateForm";
 import { useState, useEffect } from "react";
 import LibrosSearch from "./components/LibrosSearch";
+import '@fontsource/roboto/700.css';
 
 function App() {
 	const greenTheme = createTheme({

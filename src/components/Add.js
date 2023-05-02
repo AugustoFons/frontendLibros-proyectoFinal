@@ -3,7 +3,6 @@ import Fab from '@mui/material/Fab';
 import Button from '@mui/material/Button';
 import { Box } from '@mui/material'
 import {Link}  from "react-router-dom";
-import '@fontsource/roboto/700.css';
 
 const Add = () => {
 return (

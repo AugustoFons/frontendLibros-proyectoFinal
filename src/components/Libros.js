@@ -13,6 +13,7 @@ import noimg from '../images/noimg.jpg'
 import Add from './Add';
 import ModelComments from './modalComments';
 
+
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
     return <IconButton {...other} />;
@@ -93,7 +94,7 @@ const Libros = ({db, obtenerLibros}) => {
                             <CloudDownloadIcon fontSize='large' />
                         </IconButton>
                         <IconButton aria-label="add to favorites" color="primary">
-                            <ModelComments item={item} obtenerLibros={obtenerLibros}/>
+                            <ModelComments item={item} title={item.title} obtenerLibros={obtenerLibros}/>
                         </IconButton>
                         <Link to={`/editar/${item._id}`} style={{textDecoration: "none"}}>
                             <IconButton aria-label="share" color="primary" >
