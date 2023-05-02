@@ -19,21 +19,37 @@ const style = {
     p: 4,
     };
 
-export default function BasicModal({item}) {
-	const [comentarios, setComentarios] = useState('');
-	const [name, setName] = useState('');
-	let nameComment = `${name} — ${comentarios}`;
+	const initialForm = {
+		name: '',        
+		comentario: '',
+	}
+
+export default function BasicModal({item, obtenerLibros}) {
+	const [comentarios, setComentarios] = useState(initialForm);
+	let nameComment = `${comentarios.name} — ${comentarios.comentario}`;
 	console.log(nameComment)
 
-	function addComment(){
-        const newComment = {
-            comments: nameComment 
-        }
-        axios.post('https://ochre-fawn-wrap.cyclic.app/postcomment/' + item._id, newComment)
-        .then(res => console.log(res.data))
-        .then(err => console.log(err))
-        alert('comentario agregado')
-		window.location.replace('/'); //uso el window location para que me recargue el pedido get a la base de datos con el libro actualizado
+	const addComment = async () => {
+		const newComment = {
+			comments: nameComment 
+		}
+		const ENDPOINT = 'https://ochre-fawn-wrap.cyclic.app/postcomment/' + item._id;
+		const OPTIONS = {
+			method: "POST",
+			headers: {"content-type": "application/json"},
+			data: JSON.stringify(newComment) ,
+		}
+		await axios(ENDPOINT, OPTIONS);
+		obtenerLibros()
+    }
+
+	const handleChange = (e) => setComentarios ({
+        ...comentarios,
+        [e.target.name]: e.target.value 
+    })
+	const handleSubmit = (e) => {
+        e.preventDefault() //evita recargas en el submit
+            addComment(comentarios)
     }
 
     const [open, setOpen] = React.useState(false);
@@ -42,6 +58,7 @@ export default function BasicModal({item}) {
 
 	return (
 	<div>
+		<form onSubmit={handleSubmit}>
 		<Badge onClick={handleOpen} badgeContent={item.comments.length} aria-label="add to favorites" color="secondary">
 			<CommentIcon color="primary" />
 		</Badge>
@@ -84,9 +101,6 @@ export default function BasicModal({item}) {
 			</List>
 			<Box
 				component="form"
-		/*        sx={{
-				'& .MuiTextField-root': { m: 1, width: '25ch' },
-				}} */
 				noValidate
 				autoComplete="off"
 				>
@@ -96,9 +110,10 @@ export default function BasicModal({item}) {
 					maxRows={4}
 					variant="filled"
 					placeholder='Nombre'
-					value={name}
-					onChange={(e) => setName(e.target.value)}
-				/>
+					name='name'
+					value={comentarios.name}
+					onChange={handleChange}				
+					/>
 				<div>
 					<TextField
 						fullWidth
@@ -107,16 +122,17 @@ export default function BasicModal({item}) {
 						rows={4}
 						variant="filled"
 						placeholder="Comentario"
-						value={comentarios}
-						onChange={(e) => setComentarios(e.target.value)}
-					/>
+						name='comentario'
+						value={comentarios.comentario}
+						onChange={handleChange}					/>
 				</div>
-				<Button variant="contained" endIcon={<SendIcon />} onClick={addComment}>
+				<Button variant="contained" type='submit' endIcon={<SendIcon />}>
                     Send
                 </Button>
 			</Box>
 			</Box>
 		</Modal>
+		</form>
 	</div>
 	);
 }

@@ -36,10 +36,10 @@ const NotImg = () => (
 )
 
 
-const LibrosSearch = ({searchValue, data}) => {
+const LibrosSearch = ({searchValue, db}) => {
 
     let searchedBook = ['null'];
-    searchedBook = data.filter(book => {
+    searchedBook = db.filter(book => {
         const bookTitle = book.title.toLowerCase()
         const bookAuthor = book.author.toLowerCase()
         const bookDescription = book.content.toLowerCase()
@@ -108,7 +108,7 @@ return (
                                     <CloudDownloadIcon fontSize='large' />
                                 </IconButton>
                                 <IconButton aria-label="add to favorites" color="primary">
-                                    <ModelComments itemComments={item.comments} />
+                                    <ModelComments item={item} />
                                 </IconButton>
                                 <Link to={`/editar/${item._id}`} style={{textDecoration: "none"}}>
                                     <IconButton aria-label="share" color="primary" >

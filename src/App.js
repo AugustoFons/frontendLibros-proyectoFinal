@@ -27,13 +27,14 @@ function App() {
     })
 
 	/*** obtener libros de la db ****/
-	const [data, setData] = useState([]);
+	const [db, setDb] = useState([]);
 	useEffect(() => {
 		obtenerLibros();
 		}, []);
 	const obtenerLibros = async () =>{
-		const Libros = (await axios.get("https://ochre-fawn-wrap.cyclic.app/get")).data
-		setData(Libros)
+		const res = await axios.get("https://ochre-fawn-wrap.cyclic.app/get"),
+		libros = res.data
+		setDb(libros)
 	}
 
 	/*** guardar el valor que entra por el input del buscador ***/
@@ -48,8 +49,8 @@ return (
 				<Routes>
 					{
 						!searchValue.length >= 1
-						?	<Route path="/" element={<Libros data={data}/>}></Route>
-						:	<Route path="/" element={<LibrosSearch searchValue={searchValue} data={data} />}></Route>
+						?	<Route path="/" element={<Libros db={db} obtenerLibros={obtenerLibros}/>}></Route>
+						:	<Route path="/" element={<LibrosSearch searchValue={searchValue} db={db} />}></Route>
 					}
 					<Route path="/agregar" element={<AddForm />}></Route>
 					<Route path="/editar/:id" element={<UpdateForm />}></Route>

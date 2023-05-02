@@ -35,7 +35,7 @@ const NotImg = () => (
 )
 
 
-const Libros = ({data}) => {
+const Libros = ({db, obtenerLibros}) => {
 
     const [expanded, setExpanded] = useState(null);
 
@@ -43,9 +43,9 @@ const Libros = ({data}) => {
     <>
         <Add />
         <Box style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly"}}>
-            { [...data].length !== 0
+            { [...db].length !== 0
             ?
-                [...data].reverse().map((item) => {
+                [...db].reverse().map((item) => {
                 return(
                 <Card sx={{ maxWidth: 335, boxShadow: "0px 10px 15px -3px rgb(203,147,67)", margin: "20px 10px", maxHeight: expanded === item._id ? 'maxContent' : 650, display: "flex", flexDirection: "column", justifyContent:"space-between", paddingBottom: "5px"  }} key={item._id} >
                     <CardHeader
@@ -93,7 +93,7 @@ const Libros = ({data}) => {
                             <CloudDownloadIcon fontSize='large' />
                         </IconButton>
                         <IconButton aria-label="add to favorites" color="primary">
-                            <ModelComments item={item} />
+                            <ModelComments item={item} obtenerLibros={obtenerLibros}/>
                         </IconButton>
                         <Link to={`/editar/${item._id}`} style={{textDecoration: "none"}}>
                             <IconButton aria-label="share" color="primary" >
