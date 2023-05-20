@@ -1,13 +1,15 @@
 import * as React from 'react';
 import {Link} from "react-router-dom";
 import { styled, alpha } from '@mui/material/styles';
-import { AppBar, Box, Toolbar, IconButton, Badge, InputBase  } from '@mui/material';
+import { AppBar, Box, Toolbar, IconButton, Badge, InputBase } from '@mui/material';
 import Logo from '../images/logonew.png'
 import Titulo from '../images/librosp.png'
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import SearchIcon from '@mui/icons-material/Search';
-import '@fontsource/roboto/500.css';
 import { useEffect, useState } from 'react';
+import Swal from "sweetalert2";
+import '@fontsource/roboto/500.css';
+
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -52,6 +54,20 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function SearchAppBar({setSearchValue, searchValue}) {
+
+    const caracteristicas = () => {
+        Swal.fire({
+            textAlign: 'start',
+            html:
+            'Esta página es parte del proyecto final de backend que realice en <b>Academia Numen</b>, quien desee puede agregar libros sobre programación desde el boton de colaborar, cada libro puede ser descargado(mediante una URL externa), comentado y editado(función deshabilitada hasta resolver roles de usuarios). Para más informacion sobre la pagina y las herramientas utilizadas dirigirse a los repositorios <b><a href="https://github.com/AugustoFons/frontendLibros-proyectoFinal">Frontend</a></b> y <b><a href="https://github.com/AugustoFons/backendLibros-proyectoFinal">Backend</a></b>. ' +
+            '<br>Al final de la pagina podran encontrar mi <b>contacto</b> ante cualquier duda.',
+            icon: 'info',
+            iconColor: '#65AD4F',
+            confirmButtonColor: '#65AD4F',
+            focusConfirm: false,
+        })
+
+    }
 
     const onSearchValueChange = (event) => {  
         setSearchValue(event.target.value);
@@ -118,7 +134,7 @@ export default function SearchAppBar({setSearchValue, searchValue}) {
                 aria-label="open drawer"
                 sx={{ mr: 2 }}
             >
-                <InfoOutlinedIcon color="primary" />
+                <InfoOutlinedIcon color="primary" onClick={() => caracteristicas()} />
             </IconButton>
             </Toolbar>
         </AppBar>

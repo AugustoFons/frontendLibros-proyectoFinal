@@ -38,13 +38,12 @@ const AddForm = () => {
 
     return (
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: '30px' }}>
-                <Stack sx={{ width: '100%' }} spacing={1}>
+            <Stack sx={{ width: '100%' }} spacing={1} mb={1}>
+                <Alert severity="warning">
+                    En caso de querer colaborar con la página agregar solo libros de programación reales!
+                </Alert>
+            </Stack>
 
-      <Alert severity="warning">
-        En caso de querer colaborar con la pagina agregar solo libros de programación reales!
-      </Alert>
-
-    </Stack>
             <Box
                 component="form"
                 sx={{

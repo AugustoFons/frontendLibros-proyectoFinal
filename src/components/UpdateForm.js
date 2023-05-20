@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from 'axios';
 import { useParams } from "react-router-dom";
-import { TextField, InputLabel, Button, Stack, Select, MenuItem, FormControl, Box } from '@mui/material';
+import { TextField, InputLabel, Button, Stack, Select, MenuItem, FormControl, Box, Alert } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import '@fontsource/roboto/700.css';
 
@@ -58,6 +58,11 @@ const UpdateForm = () =>{
 
     return (
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: '30px' }}>
+            <Stack sx={{ width: '100%' }} spacing={1} mb={2}>
+                <Alert severity="warning">
+                    Esta función se encuentra deshabilitada para evitar la edicion de los libros cargados hasta que puede otorgar permisos de usuarios.
+                </Alert>
+            </Stack>
             <Box
                 component="form"
                 sx={{

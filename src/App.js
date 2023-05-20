@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import axios from 'axios'
 import NavBar from './components/NavBar'
+import Footer from "./components/Footer";
 import { ThemeProvider , createTheme } from '@mui/material/styles';
 import Libros from "./components/Libros";
 import AddForm from "./components/AddForm";
@@ -57,6 +58,7 @@ return (
 					<Route path="/editar/:id" element={<UpdateForm />}></Route>
 				</Routes>
 			</BrowserRouter>
+			<Footer />
         </div>
     </ThemeProvider>
 
