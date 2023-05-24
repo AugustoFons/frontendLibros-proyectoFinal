@@ -95,7 +95,7 @@ export default function BasicModal({item, obtenerLibros, title}) {
 	return (
 	<div>
 		<form onSubmit={handleSubmit}>
-		<Badge onClick={handleOpen} badgeContent={item.comments.length} aria-label="add to favorites" color="secondary">
+		<Badge onClick={handleOpen} badgeContent={item.comments.length - 1} aria-label="add to favorites" color="secondary">
 			<CommentIcon color="primary" />
 		</Badge>
 		<Modal
@@ -123,7 +123,7 @@ export default function BasicModal({item, obtenerLibros, title}) {
 					: null
 				}
 				<List sx={{ width: '100%', bgcolor: 'background.paper', maxHeight: '250px', overflowY: 'auto'}}>
-					{[...item.comments].map((comment) => {
+					{[...item.comments].filter(item => item !== 'aprobado').map((comment) => {
 					return (
 					<>
 						<ListItem alignItems="flex-start" style={{hyphens: "auto"}}>

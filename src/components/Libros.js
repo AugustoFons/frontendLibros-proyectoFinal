@@ -44,10 +44,12 @@ const Libros = ({db, obtenerLibros}) => {
     <>
         <Add />
         <Box style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly"}}>
-            { [...db].length !== 0
+            { [...db].length !== 0  //esta condicion es par mostrar el loading antes de que se carge la base de datos
             ?
                 [...db].reverse().map((item) => {
                 return(
+                    item.comments[0] === 'aprobado' ?   //esta condicion esta hecha para que cuando algun usuario agregue un libro solo pueda aparecer en la seccion principal si su primer comentario es 'aprobado' , esto solo lo puede hacer el administrador desde la base de datos.
+
                 <Card sx={{ maxWidth: 335, boxShadow: "0px 10px 15px -3px rgb(203,147,67)", margin: "20px 10px", maxHeight: expanded === item._id ? 'maxContent' : 650, display: "flex", flexDirection: "column", justifyContent:"space-between", paddingBottom: "5px"  }} key={item._id} >
                     <CardHeader
                     avatar={
@@ -87,6 +89,7 @@ const Libros = ({db, obtenerLibros}) => {
                     <CardContent sx={{ overflow: "hidden" }}>
                         <Typography variant="body2" color="text.secondary">
                         {item.content_short}...
+                        {item.comments[0]}
                         </Typography>
                     </CardContent>
                     <CardActions disableSpacing>
@@ -124,6 +127,8 @@ const Libros = ({db, obtenerLibros}) => {
 
 
                 </Card>
+
+                : null
                 )
                 })
                 :

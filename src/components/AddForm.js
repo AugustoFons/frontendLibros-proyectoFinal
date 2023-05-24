@@ -39,8 +39,8 @@ const AddForm = () => {
     return (
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: '30px' }}>
             <Stack sx={{ width: '100%' }} spacing={1} mb={1}>
-                <Alert severity="warning">
-                    En caso de querer colaborar con la página agregar solo libros de programación reales!
+                <Alert severity="info">
+                    Al enviar el formulario el libro se guardara automaticamente en la base de datos de MongoDB. Cuando el administrador lo califique como "aprobado" el libro sera visible en la sección principal.
                 </Alert>
             </Stack>
 

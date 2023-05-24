@@ -62,6 +62,8 @@ return (
             {
                 searchedBook.reverse().map(item => {
                     return(
+                        item.comments[0] === 'aprobado' ?
+
                         <Card sx={{ maxWidth: 335, boxShadow: "0px 10px 15px -3px rgb(203,147,67)", margin: "20px 10px", maxHeight: expanded === item._id ? 'maxContent' : 650, display: "flex", flexDirection: "column", justifyContent:"space-between", paddingBottom: "5px"  }} key={item._id} >
                             <CardHeader
                             avatar={
@@ -136,6 +138,8 @@ return (
                             </Collapse>
                             }
                         </Card>
+                        :null
+                        
                         )
                 })
             }

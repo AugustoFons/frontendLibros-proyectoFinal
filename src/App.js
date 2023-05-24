@@ -39,9 +39,10 @@ function App() {
 		setDb(libros)
 	}
 
+
+
 	/*** guardar el valor que entra por el input del buscador ***/
 	const [searchValue, setSearchValue] = useState('')
-	console.log(searchValue)
 
 return (
     <ThemeProvider theme={greenTheme}>
