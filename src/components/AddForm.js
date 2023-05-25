@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { TextField, InputLabel, Button, Stack, Select, MenuItem, FormControl, Box, Alert  } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SendIcon from '@mui/icons-material/Send';
+import Swal from "sweetalert2";
 import '@fontsource/roboto/700.css';
 
 
@@ -18,6 +19,20 @@ const AddForm = () => {
     const [descarga, setDescarga] = useState('')
     const navegar = useNavigate()
 
+    const addedBook= () => {
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Enviado',
+            showConfirmButton: false,
+            timer: 1500
+        }).then(
+            setTimeout(() => {
+                navegar(0)
+            }, "1500")
+            )
+    }
+    
     function addBook(){
         const newBook = {
             title: titulo,
@@ -32,9 +47,10 @@ const AddForm = () => {
         axios.post('https://ochre-fawn-wrap.cyclic.app/post', newBook)
         .then(res => console.log(res.data))
         .then(err => console.log(err))
-        alert('libro agregado')
-        navegar(0)
+        addedBook()
     }
+
+
 
     return (
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: '30px' }}>

@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useParams } from "react-router-dom";
 import { TextField, InputLabel, Button, Stack, Select, MenuItem, FormControl, Box, Alert } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
+import Swal from "sweetalert2";
 import '@fontsource/roboto/700.css';
 
 
@@ -38,6 +39,16 @@ const UpdateForm = () =>{
         setDescarga(Libro.item.url_download)
         }
 
+    const editedBook= () => {
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Enviado',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    }
+
     function updateBook(){
         const editBook = {
             title: titulo,
@@ -51,7 +62,7 @@ const UpdateForm = () =>{
         }
         axios.patch('https://ochre-fawn-wrap.cyclic.app/update/' + params.id, editBook).then(res => {
             console.log(res.data)
-            alert('libro actualizado')
+            editedBook()
             window.location.replace('/'); //uso el window location para que me recargue el pedido get a la base de datos con el libro actualizado
         })
     }

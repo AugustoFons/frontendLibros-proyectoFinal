@@ -66,7 +66,6 @@ export default function SearchAppBar({setSearchValue, searchValue}) {
             confirmButtonColor: '#65AD4F',
             focusConfirm: false,
         })
-
     }
 
     const onSearchValueChange = (event) => {  
