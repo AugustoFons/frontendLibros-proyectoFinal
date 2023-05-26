@@ -111,7 +111,7 @@ export default function BasicModal({item, obtenerLibros, title}) {
 				</Typography>
 				<Divider />
 				{
-					item.comments.length === 0 ? 
+					item.comments.length === 1 ? 
 					<ListItem alignItems="center">
 						<IconButton color="secondary">
 							<CommentsDisabledIcon  fontSize='large' />

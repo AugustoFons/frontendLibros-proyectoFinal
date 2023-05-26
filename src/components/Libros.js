@@ -89,7 +89,6 @@ const Libros = ({db, obtenerLibros}) => {
                     <CardContent sx={{ overflow: "hidden" }}>
                         <Typography variant="body2" color="text.secondary">
                         {item.content_short}...
-                        {item.comments[0]}
                         </Typography>
                     </CardContent>
                     <CardActions disableSpacing>
