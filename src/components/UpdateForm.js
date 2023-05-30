@@ -82,7 +82,7 @@ const UpdateForm = () =>{
                 noValidate
                 autoComplete="off"
                 >
-                <div style={{ display: "flex", wrap: "noWrap" }}>
+                <div style={{ display: "flex" }}>
                     <TextField
                         id="outlined-multiline-flexible"
                         required

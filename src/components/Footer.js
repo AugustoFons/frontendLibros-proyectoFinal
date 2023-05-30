@@ -29,8 +29,8 @@ const Footer = () => {
                 sx={{
                     borderTop: (theme) => `1px solid ${theme.palette.divider}`,
                     borderColor: 'secondary',
-                    mt: 8,
-                    py: [3, 6],
+                    mt: 4,
+                    py: [3, 3],
                 }}
                 >
                 <Box sx={{display:'flex', alignItems: 'center', justifyContent: "center", columnGap: '5px', flexWrap: 'wrap'}}>

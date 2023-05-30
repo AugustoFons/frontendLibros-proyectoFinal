@@ -54,7 +54,6 @@ export default function BasicModal({item, obtenerLibros, title}) {
 	const [comentarios, setComentarios] = useState(initialForm);
 	let points = value
 	let nameComment = `${points} — ${comentarios.name} — ${comentarios.comentario}`;
-	console.log(nameComment)
 
 	const addComment = async () => {
 		const newComment = {

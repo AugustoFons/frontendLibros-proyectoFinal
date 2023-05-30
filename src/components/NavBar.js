@@ -55,9 +55,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function SearchAppBar({setSearchValue, searchValue}) {
 
-    const caracteristicas = () => {
+    const proyectoInfo = () => {
         Swal.fire({
-            textAlign: 'start',
             html:
             'Esta página es parte del proyecto final de backend que realice en <b>Academia Numen</b>, quien desee puede agregar libros sobre programación desde el boton de colaborar, cada libro puede ser descargado(mediante una URL externa), comentado y editado(función deshabilitada hasta resolver roles de usuarios). Para más informacion sobre la pagina y las herramientas utilizadas dirigirse a los repositorios <b><a href="https://github.com/AugustoFons/frontendLibros-proyectoFinal">Frontend</a></b> y <b><a href="https://github.com/AugustoFons/backendLibros-proyectoFinal">Backend</a></b>. ' +
             '<br>Al final de la pagina podran encontrar mi <b>contacto</b> ante cualquier duda.',
@@ -89,7 +88,7 @@ export default function SearchAppBar({setSearchValue, searchValue}) {
                         <Link to={`/`} style={{ flexGrow: 1 }}>
                         <Badge  
                         color="primary"
-                        noWrap
+                        nowrap
                         height="100%"
                         sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', padding: 1 }}>
                             <img src={Logo} alt="logo libros" width={'60rem'} />
@@ -104,7 +103,7 @@ export default function SearchAppBar({setSearchValue, searchValue}) {
                 <Link to={`/`} style={{ flexGrow: 1 }}>
                     <Badge  
                     color="primary"
-                    noWrap
+                    nowrap
                     height="100%"
                     sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', padding: 1 }}
                     >
@@ -132,8 +131,9 @@ export default function SearchAppBar({setSearchValue, searchValue}) {
                 edge="start"
                 aria-label="open drawer"
                 sx={{ mr: 2 }}
+                onClick={() => proyectoInfo()} 
             >
-                <InfoOutlinedIcon color="primary" onClick={() => caracteristicas()} />
+                <InfoOutlinedIcon color="primary" />
             </IconButton>
             </Toolbar>
         </AppBar>

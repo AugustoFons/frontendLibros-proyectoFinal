@@ -12,7 +12,7 @@ import ImgIngles from '../images/en.png'
 import noimg from '../images/noimg.jpg'
 import Add from './Add';
 import ModelComments from './modalComments';
-
+import Pagination from '@mui/material/Pagination';
 
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
@@ -38,15 +38,30 @@ const NotImg = () => (
 
 const Libros = ({db, obtenerLibros}) => {
 
-    const [expanded, setExpanded] = useState(null);
+    const [expanded, setExpanded] = useState(null); //estado para expandir la descripcion
+
+    /*** PAGINACION  ***/
+    let pages = Math.ceil(db.length/9)
+    const [page, setPage] = useState(1);
+    const [countInit, setCountInit] = useState(0);
+    const [countEnd, setCountEnd] = useState(9);
+
+    const handleChange = (event, value) => {
+        setPage(value);
+        if(value !== page) {
+            setCountEnd(9 * value);
+            setCountInit(9*(value-1));
+        }
+        document.getElementById('lista').scrollIntoView();
+    };
 
     return (
     <>
         <Add />
-        <Box style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly"}}>
+        <Box id='lista' style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly"}}>
             { [...db].length !== 0  //esta condicion es par mostrar el loading antes de que se carge la base de datos
             ?
-                [...db].reverse().map((item) => {
+                [...db].reverse().slice(countInit,countEnd).map((item) => {
                 return(
                     item.comments[0] === 'aprobado' ?   //esta condicion esta hecha para que cuando algun usuario agregue un libro solo pueda aparecer en la seccion principal si su primer comentario es 'aprobado' , esto solo lo puede hacer el administrador desde la base de datos.
 
@@ -135,7 +150,14 @@ const Libros = ({db, obtenerLibros}) => {
                     <CircularProgress color="secondary" />
                 </Stack>
             }
+        
         </Box>
+        <Box>
+            <Stack mt={4} >
+                <Pagination count={pages} page={page} color="primary" onChange={handleChange} size='large' sx={{display: 'flex', justifyContent: 'center', columnGap: '15px'}} />
+            </Stack>
+        </Box>
+
     </>
     )
 }
