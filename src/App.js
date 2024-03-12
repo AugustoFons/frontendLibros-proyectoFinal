@@ -62,7 +62,6 @@ return (
 			<Footer />
         </div>
     </ThemeProvider>
-
 );
 }
 

@@ -2,7 +2,6 @@ import { Container, Typography, Link, Box  } from '@mui/material';
 import GitHubIcon from '../images/gh.png'
 import LinkedinIcon from '../images/lk.png'
 
-
 function Copyright() {
     return (
         <Typography variant="body2" color="text.secondary" align="center" mr={1}>
@@ -13,7 +12,6 @@ function Copyright() {
         </Typography>
     );
     }
-
     const GitHub = () => (
         <img src={GitHubIcon} alt="github"/>
     )
@@ -38,7 +36,6 @@ const Footer = () => {
                     <Link href='https://github.com/AugustoFons'><GitHub /></Link>
                     <Link href='https://www.linkedin.com/in/augustofons/'><Linkedin /></Link>
                 </Box>
-
             </Container>  )
 }
 
