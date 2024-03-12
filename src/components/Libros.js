@@ -41,16 +41,16 @@ const Libros = ({db, obtenerLibros}) => {
     const [expanded, setExpanded] = useState(null); //estado para expandir la descripcion
 
     /*** PAGINACION  ***/
-    let pages = Math.ceil(db.length/9)
+    let pages = Math.ceil(db.length/8)
     const [page, setPage] = useState(1);
     const [countInit, setCountInit] = useState(0);
-    const [countEnd, setCountEnd] = useState(9);
+    const [countEnd, setCountEnd] = useState(8);
 
     const handleChange = (event, value) => {
         setPage(value);
         if(value !== page) {
-            setCountEnd(9 * value);
-            setCountInit(9*(value-1));
+            setCountEnd(8 * value);
+            setCountInit(8*(value-1));
         }
         document.getElementById('lista').scrollIntoView();
     };
