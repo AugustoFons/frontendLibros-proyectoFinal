@@ -35,7 +35,6 @@ const NotImg = () => (
     <img src={noimg} alt="" width="100%" style={{  objectFit: 'fill' }}  />
 )
 
-
 const Libros = ({db, obtenerLibros}) => {
 
     const [expanded, setExpanded] = useState(null); //estado para expandir la descripcion

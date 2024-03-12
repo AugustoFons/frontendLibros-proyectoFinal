@@ -7,7 +7,6 @@ import SendIcon from '@mui/icons-material/Send';
 import Swal from "sweetalert2";
 import '@fontsource/roboto/700.css';
 
-
 const UpdateForm = () =>{
     const params = useParams()
     const [titulo, setTitulo] = useState('');

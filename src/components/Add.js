@@ -17,9 +17,7 @@ return (
         >
         colaborar
     </Button>
-
         </Link>
-
     </Box>
 
     )
