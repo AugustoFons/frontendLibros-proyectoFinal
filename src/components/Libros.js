@@ -40,10 +40,10 @@ const Libros = ({db, obtenerLibros}) => {
     const [expanded, setExpanded] = useState(null); //estado para expandir la descripcion
 
     /*** PAGINACION  ***/
-    let pages = Math.ceil(db.length/8)
+    let pages = Math.ceil(db.length/12)
     const [page, setPage] = useState(1);
     const [countInit, setCountInit] = useState(0);
-    const [countEnd, setCountEnd] = useState(8);
+    const [countEnd, setCountEnd] = useState(12);
 
     const handleChange = (event, value) => {
         setPage(value);
