@@ -44,7 +44,7 @@ const AddForm = () => {
             cover: imagen,
             url_download: descarga
         }
-        axios.post('https://ochre-fawn-wrap.cyclic.app/post', newBook)
+        axios.post('https://backendlibros-proyectofinal.onrender.com/post', newBook)
         .then(res => console.log(res.data))
         .then(err => console.log(err))
         addedBook()

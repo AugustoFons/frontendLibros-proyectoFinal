@@ -34,7 +34,7 @@ function App() {
 		obtenerLibros();
 		}, []);
 	const obtenerLibros = async () =>{
-		const res = await axios.get("https://ochre-fawn-wrap.cyclic.app/get"),
+		const res = await axios.get("https://backendlibros-proyectofinal.onrender.com/get"),
 		libros = res.data
 		setDb(libros)
 	}

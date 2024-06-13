@@ -59,7 +59,7 @@ export default function BasicModal({item, obtenerLibros, title}) {
 		const newComment = {
 			comments: nameComment 
 		}
-		const ENDPOINT = 'https://ochre-fawn-wrap.cyclic.app/postcomment/' + item._id;
+		const ENDPOINT = 'https://backendlibros-proyectofinal.onrender.com/postcomment/' + item._id;
 		const OPTIONS = {
 			method: "POST",
 			headers: {"content-type": "application/json"},
