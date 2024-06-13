@@ -48,8 +48,8 @@ const Libros = ({db, obtenerLibros}) => {
     const handleChange = (event, value) => {
         setPage(value);
         if(value !== page) {
-            setCountEnd(8 * value);
-            setCountInit(8*(value-1));
+            setCountEnd(12 * value);
+            setCountInit(12*(value-1));
         }
         document.getElementById('lista').scrollIntoView();
     };
