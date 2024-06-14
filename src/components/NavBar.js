@@ -83,14 +83,14 @@ export default function SearchAppBar({setSearchValue, searchValue}) {
     return (
     <Box  sx={{ display: "flex", flexGrow: 1, flexDirection:"column" }}>
                 
-        <AppBar width="xl" position="static" color="transparent" sx={{alignItems: !matches ? 'center' : null}}  >
+        <AppBar width="xl" position="static" color="transparent" sx={{alignItems: !matches ? 'center' : null, paddingTop:0.3}}  >
                 {!matches &&
                         <Link to={`/`} style={{ flexGrow: 1 }}>
                         <Badge  
                         color="primary"
                         nowrap
                         height="100%"
-                        sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', padding: 1 }}>
+                        sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', paddingTop:0.8 }}>
                             <img src={Logo} alt="logo libros" width={'60rem'} />
                             <img src={Titulo} alt="titulo" width={'70rem'} style={{ paddingLeft: "10px" }}/>
                         </Badge>
@@ -115,7 +115,7 @@ export default function SearchAppBar({setSearchValue, searchValue}) {
                 </Link>
             }
 
-            <Search>
+            <Search sx={{marginBottom:0.4}}>
                 <SearchIconWrapper>
                 <SearchIcon color="primary" />
                 </SearchIconWrapper>
@@ -130,7 +130,7 @@ export default function SearchAppBar({setSearchValue, searchValue}) {
                 size="large"
                 edge="start"
                 aria-label="open drawer"
-                sx={{ mr: 2 }}
+                sx={{ mr: 2, marginBottom:0.4 }}
                 onClick={() => proyectoInfo()} 
             >
                 <InfoOutlinedIcon color="primary" />

@@ -59,7 +59,7 @@ export default function BasicModal({item, obtenerLibros, title}) {
 		const newComment = {
 			comments: nameComment 
 		}
-		const ENDPOINT = 'https://backendlibros-proyectofinal.onrender.com/postcomment/' + item._id;
+		const ENDPOINT = 'https://backend-libros-proyecto-final.vercel.app/postcomment/' + item._id;
 		const OPTIONS = {
 			method: "POST",
 			headers: {"content-type": "application/json"},

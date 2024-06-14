@@ -34,7 +34,7 @@ function App() {
 		obtenerLibros();
 		}, []);
 	const obtenerLibros = async () =>{
-		const res = await axios.get("https://backendlibros-proyectofinal.onrender.com/get"),
+		const res = await axios.get("https://backend-libros-proyecto-final.vercel.app/get"),
 		libros = res.data
 		setDb(libros)
 	}

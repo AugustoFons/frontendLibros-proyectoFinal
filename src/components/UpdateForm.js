@@ -25,7 +25,7 @@ const UpdateForm = () =>{
         // eslint-disable-next-line react-hooks/exhaustive-deps
         }, []);
     const obtenerLibros = async () =>{
-        const Libro = (await axios.get('https://backendlibros-proyectofinal.onrender.com/get/' + params.id)).data
+        const Libro = (await axios.get('https://backend-libros-proyecto-final.vercel.app/get/' + params.id)).data
         console.log(Libro)
         setData(Libro)
         setTitulo(Libro.item.title);
@@ -59,7 +59,7 @@ const UpdateForm = () =>{
             cover: imagen,
             url_download: descarga
         }
-        axios.patch('https://backendlibros-proyectofinal.onrender.com/update/' + params.id, editBook).then(res => {
+        axios.patch('https://backend-libros-proyecto-final.vercel.app/update/' + params.id, editBook).then(res => {
             console.log(res.data)
             editedBook()
             window.location.replace('/'); //uso el window location para que me recargue el pedido get a la base de datos con el libro actualizado

@@ -64,7 +64,7 @@ const Libros = ({db, obtenerLibros}) => {
                 return(
                     item.comments[0] === 'aprobado' ?   //esta condicion esta hecha para que cuando algun usuario agregue un libro solo pueda aparecer en la seccion principal si su primer comentario es 'aprobado' , esto solo lo puede hacer el administrador desde la base de datos.
 
-                <Card sx={{ maxWidth: 335, boxShadow: "0px 10px 15px -3px rgb(203,147,67)", margin: "20px 10px", maxHeight: expanded === item._id ? 'maxContent' : 650, display: "flex", flexDirection: "column", justifyContent:"space-between", paddingBottom: "5px"  }} key={item._id} >
+                <Card sx={{ maxWidth: 315, boxShadow: "0px 10px 15px -3px rgb(203,147,67)", margin: "20px 10px", maxHeight: expanded === item._id ? 'maxContent' : 630, display: "flex", flexDirection: "column", justifyContent:"space-between", paddingBottom: "5px"  }} key={item._id} >
                     <CardHeader
                     avatar={
                     <Avatar aria-label="recipe">
