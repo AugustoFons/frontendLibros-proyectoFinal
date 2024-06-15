@@ -13,6 +13,7 @@ import noimg from '../images/noimg.jpg'
 import Add from './Add';
 import ModelComments from './modalComments';
 import Pagination from '@mui/material/Pagination';
+import { px } from "framer-motion";
 
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
@@ -55,7 +56,7 @@ const Libros = ({db, obtenerLibros}) => {
     };
 
     return (
-    <>
+    <div style={{padding: '0px 30px 0px 30px'}}>
         <Add />
         <Box id='lista' style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly"}}>
             { [...db].length !== 0  //esta condicion es par mostrar el loading antes de que se carge la base de datos
@@ -157,7 +158,7 @@ const Libros = ({db, obtenerLibros}) => {
             </Stack>
         </Box>
 
-    </>
+    </div>
     )
 }
 
